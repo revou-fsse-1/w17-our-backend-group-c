@@ -21,7 +21,7 @@ export class AdminService {
   // business logic delete admin
   async deleteAdmin(id: number) {
     try {
-      const admin = await this.prismaService.admin.delete({
+      await this.prismaService.admin.delete({
         where: {
           id: id,
         },
