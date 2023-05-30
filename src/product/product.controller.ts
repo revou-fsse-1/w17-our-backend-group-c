@@ -1,39 +1,71 @@
-import { Controller, Get, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
-import { AuthGuard, RoleGuard } from 'src/auth/guard/auth.guard';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
+import { CreateProduct } from './dto/create-product.dto';
+import { UpdateProduct } from './dto/update-product.dto';
+import { PatchProduct } from './dto/patch-product.dto';
 
 @Controller('products')
-@ApiTags('Products')
+@ApiTags('products')
 export class ProductController {
-    constructor(private productService: ProductService){}
+  constructor(private productService: ProductService) {}
 
-    // get all products
-    // @UseGuards(AuthGuard)
-    // @ApiBearerAuth()
-    @Get()
-    async getAllProducts(){
-        return await this.productService.getAllProducts();
-    }
+  // get all products
+  // @UseGuards(AuthGuard)
+  // @ApiBearerAuth()
+  @Get()
+  async getAllProducts() {
+    return await this.productService.getAllProducts();
+  }
 
-    // get product by id
-    // @UseGuards(RoleGuard)
-    // @UseGuards(AuthGuard)
-    // @ApiBearerAuth()
-    @Get(':id')
-    async getProductById(@Param('id', ParseIntPipe) id: number){}
-    
-    // search product using query
-    
+  // get product by id
+  // @UseGuards(RoleGuard)
+  // @UseGuards(AuthGuard)
+  // @ApiBearerAuth()
+  @Get(':id')
+  async getProductById(@Param('id', ParseIntPipe) id: number) {
+    return await this.productService.getProductById(id);
+  }
 
-    // create product
+  // search product using query
 
-    // update product
+  // create product
+  @Post()
+  async createProduct(@Body() createProductDto: CreateProduct) {
+    return await this.productService.createProduct(createProductDto);
+  }
 
-    // put product
+  // update product
+  @Put(':id')
+  async updateProduct(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateProductDto: UpdateProduct,
+  ) {
+    return await this.productService.updateProduct(id, updateProductDto);
+  }
 
-    // patch product
+  // patch product
+  @Patch(':id')
+  async patchProduct(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() patchProductDto: PatchProduct,
+  ) {
+    return await this.productService.patchProduct(id, patchProductDto);
+  }
 
-    // delete product
-
+  // delete product
+  @Delete(':id')
+  async deleteProduct(@Param('id', ParseIntPipe) id: number) {
+    return await this.productService.deleteProduct(id);
+  }
 }
