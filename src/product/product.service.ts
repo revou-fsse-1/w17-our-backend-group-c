@@ -12,6 +12,17 @@ export class ProductService {
   async getAllProducts() {
     return await this.prismaService.product.findMany();
   }
+  // business logic search product
+  async searchProduct(query: string) {
+    return await this.prismaService.product.findMany({
+      where: {
+        title: {
+          contains: query,
+          mode: 'insensitive',
+        },
+      },
+    });
+  }
 
   // business logic get product by id
   async getProductById(id: number) {
