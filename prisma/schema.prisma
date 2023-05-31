@@ -21,7 +21,7 @@ model User {
   email     String    @unique
   password  String
   roles     Roles     @default(user)
-  Wishlist  Wishlist? // ganti ke wishlist
+  wishlist  Wishlist? 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
 }
@@ -42,7 +42,7 @@ model Wishlist {
   userId    Int?      @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
-  Product   Product[] //ganti ke products
+  products   Product[] 
 }
 
 model Product {
