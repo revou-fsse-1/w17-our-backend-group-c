@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Decimal } from '@prisma/client/runtime';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateProduct {
@@ -18,7 +19,7 @@ export class CreateProduct {
     type: Number,
     format: 'double',
   })
-  price: number;
+  price: Decimal;
 
   @IsString()
   @IsNotEmpty()

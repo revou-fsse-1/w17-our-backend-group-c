@@ -40,38 +40,38 @@ export class ProductService {
 
   // business logic create product
   async createProduct(createProductDto: CreateProduct) {
-    const { price, ...rest } = createProductDto;
+    // const { price, ...rest } = createProductDto;
 
-    let parsedPrice: number;
+    // let parsedPrice: number;
 
-    if (typeof price === 'number') {
-      // If price is already a number, assign it directly
-      parsedPrice = price;
-    } else {
-      // If price is a string, parse it into a number
-      parsedPrice = parseFloat(price);
-    }
-
-    const product = await this.prismaService.product.create({
-      data: {
-        ...rest,
-        price: parsedPrice,
-      },
-    });
-
-    const responseProduct = {
-      ...product,
-      price: parsedPrice, // Convert the parsedPrice to a number in the response
-    };
-
-    return responseProduct;
+    // if (typeof price === 'number') {
+    //   // If price is already a number, assign it directly
+    //   parsedPrice = price;
+    // } else {
+    //   // If price is a string, parse it into a number
+    //   parsedPrice = parseFloat(price);
+    // }
 
     // const product = await this.prismaService.product.create({
     //   data: {
-    //     ...createProductDto,
-    //   }
+    //     ...rest,
+    //     price: parsedPrice,
+    //   },
     // });
-    // return product;
+
+    // const responseProduct = {
+    //   ...product,
+    //   price: parsedPrice, // Convert the parsedPrice to a number in the response
+    // };
+
+    // return responseProduct;
+
+    const product = await this.prismaService.product.create({
+      data: {
+        ...createProductDto,
+      },
+    });
+    return product;
   }
 
   // business logic update product
