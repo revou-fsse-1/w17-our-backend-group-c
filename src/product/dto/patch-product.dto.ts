@@ -13,11 +13,6 @@ export class PatchProduct {
   @ApiProperty({ required: false, default: 'Example Description' })
   description: string;
 
-  @IsString()
-  @IsOptional()
-  @ApiProperty({ required: false, default: 'Example Category' })
-  categories: string;
-
   @IsNumber()
   @IsOptional()
   @ApiProperty({
@@ -27,6 +22,19 @@ export class PatchProduct {
     default: 0,
   })
   price: Decimal;
+
+  @ApiProperty({ default: 1 })
+  quantity: number;
+
+  @IsString()
+  @IsOptional()
+  @ApiProperty({ required: false, default: 'Example Category' })
+  categories: string;
+
+  // nanti image akan di hapus ketika sudah integrasi 3rd party
+  @IsOptional()
+  @ApiProperty({ default: 'image.png' })
+  image?: string;
 
   @IsNumber()
   @IsOptional()

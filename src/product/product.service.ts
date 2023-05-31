@@ -95,8 +95,15 @@ export class ProductService {
   async patchProduct(id: number, patchProductDto: PatchProduct) {
     try {
       // desctructure object
-      const { title, description, categories, price, wishlistId } =
-        patchProductDto;
+      const {
+        title,
+        description,
+        categories,
+        quantity,
+        price,
+        image,
+        wishlistId,
+      } = patchProductDto;
       return await this.prismaService.product.update({
         where: {
           id: id,
@@ -106,7 +113,9 @@ export class ProductService {
           title: title ? title : undefined,
           description: description ? description : undefined,
           categories: categories ? categories : undefined,
+          quantity: quantity ? quantity : undefined,
           price: price ? price : undefined,
+          image: image ? image : undefined,
           wishlistId: wishlistId ? wishlistId : undefined,
         },
       });

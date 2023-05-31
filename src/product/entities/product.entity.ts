@@ -15,8 +15,14 @@ export class ProductEntity implements Product {
   @ApiProperty({ default: 1000 })
   price: Decimal;
 
+  @ApiProperty({ default: 1 })
+  quantity: number;
+
   @ApiProperty({ default: 'Example Categories' })
   categories: string;
+
+  @ApiProperty({ default: 'image.png' })
+  image: string;
 
   @ApiProperty({ required: false, default: 1 })
   wishlistId: number;
