@@ -1,16 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Decimal } from '@prisma/client/runtime';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateProduct {
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ default: 'Example Title' })
   title: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ default: 'Example Description' })
   description: string;
 
   @IsNumber()
@@ -23,7 +23,7 @@ export class CreateProduct {
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ default: 'Example Category' })
   categories: string;
 
   // @IsString()
