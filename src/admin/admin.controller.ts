@@ -7,8 +7,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard, RoleGuard } from 'src/auth/guard/auth.guard';
+import { AdminEntity } from './entity/admin.entity';
 
 @Controller('admins')
 @ApiTags('admins')
@@ -19,6 +20,7 @@ export class AdminController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiOkResponse({ type: AdminEntity, isArray: true })
   @Get()
   async getAllAdmins() {
     return this.adminService.getAllAdmins();
@@ -28,6 +30,10 @@ export class AdminController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiOkResponse({
+    status: 200,
+    description: 'Admin with {id} successfully deleted.',
+  })
   @Delete(':id')
   async deleteAdmin(@Param('id', ParseIntPipe) id: number) {
     return this.adminService.deleteAdmin(id);

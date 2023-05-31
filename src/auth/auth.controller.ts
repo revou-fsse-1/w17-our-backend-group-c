@@ -10,9 +10,10 @@ import { AuthService } from './auth.service';
 
 import { CreateUser } from './dto/create-user.dto';
 import { AuthGuard, RoleGuard } from './guard/auth.guard';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { CreateAdmin } from './dto/create-admin.dto';
+import { AdminEntity } from 'src/admin/entity/admin.entity';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -32,12 +33,17 @@ export class AuthController {
   }
 
   // Register Admin
+  @ApiOkResponse({ type: AdminEntity, isArray: true })
   @Post('register/admin')
   async registerAdmin(@Body() createAdminDto: CreateAdmin) {
     return this.authService.registerAdmin(createAdminDto);
   }
 
   // Login Admin
+  @ApiOkResponse({
+    status: 200,
+    description: '"access_token": "example token"',
+  })
   @Post('login/admin')
   async loginAdmin(@Body() loginAdminDto: LoginDto) {
     return this.authService.loginAdmin(loginAdminDto);
