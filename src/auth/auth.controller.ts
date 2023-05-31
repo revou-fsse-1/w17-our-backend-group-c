@@ -28,6 +28,10 @@ export class AuthController {
 
   // Login User
   @Post('login/user')
+  @ApiOkResponse({
+    status: 200,
+    description: '"access_token": "example token"',
+  })
   async loginUser(@Body() loginUserDto: LoginDto) {
     return this.authService.loginUser(loginUserDto);
   }

@@ -12,12 +12,12 @@ export class CreateUser {
   @IsEmail()
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ default: 'example@gmail.com' })
   email: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ default: 'example password' })
   password: string;
 
   @IsEnum(Role)
