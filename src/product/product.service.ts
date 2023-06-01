@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProduct } from './dto/create-product.dto';
 import { UpdateProduct } from './dto/update-product.dto';
 import { PatchProduct } from './dto/patch-product.dto';
+import { createApi as unsplashCreateApi } from 'unsplash-js';
 
 @Injectable()
 export class ProductService {
@@ -67,12 +68,29 @@ export class ProductService {
 
     // return responseProduct;
 
-    const product = await this.prismaService.product.create({
+    // const product = await this.prismaService.product.create({
+    //   data: {
+    //     ...createProductDto,
+    //   },
+    // });
+    // return product;
+
+    const unsplash = unsplashCreateApi({
+      accessKey: process.env.UNSPLASH_ACCESS_KEY,
+    });
+
+    const result = await unsplash.photos.getRandom({
+      query: createProductDto.title,
+      count: 1,
+    });
+    const randomImageUrl = result.response[0].urls.regular;
+
+    return await this.prismaService.product.create({
       data: {
         ...createProductDto,
+        image: randomImageUrl,
       },
     });
-    return product;
   }
 
   // business logic update product
