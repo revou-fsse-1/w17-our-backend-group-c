@@ -13,6 +13,7 @@ import {
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 import {
   ApiBearerAuth,
+  ApiCreatedResponse,
   ApiOkResponse,
   ApiQuery,
   ApiTags,
@@ -23,6 +24,7 @@ import { UpdateWishlist } from './dto/update-wishlist.dto';
 import { PatchWishlist } from './dto/patch-wishlist.dto';
 import { ProductEntity } from 'src/product/entities/product.entity';
 import { WishlistEntity } from './entities/wishlist.entity';
+import { WishlistRelationEntity } from './entities/wishlist.relation.entity';
 
 @Controller('wishlists')
 @ApiTags('wishlists')
@@ -46,7 +48,7 @@ export class WishlistController {
 
   // get wishlist by id + show relation between wishlist and product
   @UseGuards(AuthGuard)
-  @ApiOkResponse({ type: WishlistEntity, isArray: true })
+  @ApiOkResponse({ type: WishlistRelationEntity })
   @ApiBearerAuth()
   @Get(':id')
   async getWishlistById(@Param('id', ParseIntPipe) id: number) {
@@ -56,6 +58,7 @@ export class WishlistController {
   // create wishlist
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiCreatedResponse({ type: WishlistEntity })
   @Post()
   async createWishlist(@Body() wishlistDto: CreateWishlist) {
     return await this.wishlistService.createWishlist(wishlistDto);
@@ -64,6 +67,7 @@ export class WishlistController {
   // update wishlist (PATCH)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiCreatedResponse({ type: WishlistEntity })
   @Patch(':id')
   async updateWishlistPatch(
     @Param('id', ParseIntPipe) id: number,
