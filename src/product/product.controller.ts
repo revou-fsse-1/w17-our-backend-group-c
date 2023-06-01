@@ -24,6 +24,7 @@ import { UpdateProduct } from './dto/update-product.dto';
 import { PatchProduct } from './dto/patch-product.dto';
 import { AuthGuard, RoleGuard } from 'src/auth/guard/auth.guard';
 import { ProductEntity } from './entities/product.entity';
+import { ProductRelationEntity } from './entities/product.relation.entity';
 
 @Controller('products')
 @ApiTags('products')
@@ -42,7 +43,7 @@ export class ProductController {
   // get product by id
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: ProductEntity })
+  @ApiOkResponse({ type: ProductRelationEntity })
   @Get(':id')
   async getProductById(@Param('id', ParseIntPipe) id: number) {
     return await this.productService.getProductById(id);
