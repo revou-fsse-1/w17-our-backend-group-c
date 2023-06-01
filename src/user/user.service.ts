@@ -19,25 +19,15 @@ export class UserService {
     });
   }
 
-  // business logic patch user
-  async updateUserPatch(id: number, userDto: PatchUser) {
-    try {
-      const { email, password } = userDto;
-      return await this.prismaService.user.update({
-        where: {
-          id: id,
-        },
-        data: {
-          email: email,
-          password: password,
-        },
-      });
-    } catch (error) {
-      if (error.code === 'P2025') {
-        throw new NotFoundException(error.meta.cause);
-      }
-      throw error;
-    }
+  // business logic get user by id
+  async getUserById(id: number) {
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        id: id,
+      },
+      include: { wishlist: true },
+    });
+    return user;
   }
 
   // business logic delete user

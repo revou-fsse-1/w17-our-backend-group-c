@@ -26,7 +26,7 @@ export class WishlistService {
   async getWishlistbyId(id: number) {
     const wishlist = await this.prismaService.wishlist.findFirst({
       where: { id },
-      // include: { product: true },
+      include: { products: true },
     });
 
     if (!wishlist || wishlist === null) {
@@ -52,22 +52,22 @@ export class WishlistService {
     throw error;
   }
 
-  // business logic update wishlist (PUT)
-  async updateWishlist(id: number, wishlistDto: UpdateWishlist) {
-    try {
-      return await this.prismaService.wishlist.update({
-        where: {
-          id: id,
-        },
-        data: wishlistDto,
-      });
-    } catch (error) {
-      if (error.code === 'P2025') {
-        throw new NotFoundException(error.meta.cause);
-      }
-      throw error;
-    }
-  }
+  // // business logic update wishlist (PUT)
+  // async updateWishlist(id: number, wishlistDto: UpdateWishlist) {
+  //   try {
+  //     return await this.prismaService.wishlist.update({
+  //       where: {
+  //         id: id,
+  //       },
+  //       data: wishlistDto,
+  //     });
+  //   } catch (error) {
+  //     if (error.code === 'P2025') {
+  //       throw new NotFoundException(error.meta.cause);
+  //     }
+  //     throw error;
+  //   }
+  // }
 
   // business logic update wishlist (PATCH)
   async updateWishlistPatch(id: number, wishlistDto: PatchWishlist) {
