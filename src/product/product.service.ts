@@ -30,6 +30,7 @@ export class ProductService {
       where: {
         id: id,
       },
+      include: { wishlist: true },
     });
 
     if (!product || product === null) {
