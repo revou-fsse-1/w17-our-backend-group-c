@@ -27,6 +27,11 @@ export class UpdateProduct {
   price: Decimal;
 
   @IsNumber()
+  @ApiProperty({ default: 1 })
+  @IsNotEmpty()
+  quantity: number;
+
+  @IsNumber()
   @IsOptional()
   @ApiProperty({ required: false })
   wishlistId?: number | null;

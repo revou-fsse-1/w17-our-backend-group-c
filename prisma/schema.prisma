@@ -50,7 +50,7 @@ model Product {
   title       String
   description String
   price       Decimal
-  quantity    Int       @default(0)
+  quantity    Int       
   categories  String
   image       String?
   wishlist    Wishlist? @relation(fields: [wishlistId], references: [id])

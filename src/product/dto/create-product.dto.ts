@@ -21,17 +21,15 @@ export class CreateProduct {
   })
   price: Decimal;
 
+  @IsNumber()
   @ApiProperty({ default: 1 })
+  @IsNotEmpty()
   quantity: number;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ default: 'Example Category' })
   categories: string;
-
-  // nanti image akan di hapus ketika sudah integrasi 3rd party
-  @ApiProperty({ default: 'image.png' })
-  image?: string;
 
   // @IsNumber()
   // @IsOptional()

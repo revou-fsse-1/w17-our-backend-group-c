@@ -23,7 +23,9 @@ export class PatchProduct {
   })
   price: Decimal;
 
+  @IsNumber()
   @ApiProperty({ default: 1 })
+  @IsOptional()
   quantity: number;
 
   @IsString()
