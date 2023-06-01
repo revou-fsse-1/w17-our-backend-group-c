@@ -21,7 +21,7 @@ model User {
   email     String    @unique
   password  String
   roles     Roles     @default(user)
-  wishlist  Wishlist? 
+  wishlist  Wishlist?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
 }
@@ -35,26 +35,27 @@ model Admin {
   updatedAt DateTime @default(now()) @updatedAt
 }
 
+// gimana caranya ketika post wishlist, konek dengan userID dan ProductId
 model Wishlist {
   id        Int       @id @default(autoincrement())
   name      String
   user      User?     @relation(fields: [userId], references: [id])
   userId    Int?      @unique
+  productId Int?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
-  products   Product[] 
+  products  Product[]
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   title       String
   description String
   price       Decimal
-  quantity    Int       
+  quantity    Int
   categories  String
   image       String?
-  wishlist    Wishlist? @relation(fields: [wishlistId], references: [id])
-  wishlistId  Int?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
+  wishlists   Wishlist[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @updatedAt
 }
