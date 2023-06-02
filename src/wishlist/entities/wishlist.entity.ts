@@ -11,6 +11,8 @@ export class WishlistEntity implements Wishlist {
   @ApiProperty({ default: 1 })
   userId: number;
 
+  productId: number;
+
   @ApiProperty()
   createdAt: Date;
 

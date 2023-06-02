@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Put,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -20,11 +21,11 @@ import {
 } from '@nestjs/swagger';
 import { WishlistService } from './wishlist.service';
 import { CreateWishlist } from './dto/create-wishlist.dto';
-import { UpdateWishlist } from './dto/update-wishlist.dto';
 import { PatchWishlist } from './dto/patch-wishlist.dto';
-import { ProductEntity } from 'src/product/entities/product.entity';
 import { WishlistEntity } from './entities/wishlist.entity';
 import { WishlistRelationEntity } from './entities/wishlist.relation.entity';
+import { AddProduct } from './dto/add.product.dto';
+import { DeleteProduct } from './dto/delete.product';
 
 @Controller('wishlists')
 @ApiTags('wishlists')
@@ -62,6 +63,35 @@ export class WishlistController {
   @Post()
   async createWishlist(@Body() wishlistDto: CreateWishlist) {
     return await this.wishlistService.createWishlist(wishlistDto);
+  }
+
+  // add more product inside wishlist
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @ApiCreatedResponse({ type: WishlistEntity })
+  @Put('addproduct/:id')
+  async addProductInsideWishlist(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() addProductInsideWishlist: AddProduct,
+  ) {
+    return await this.wishlistService.addProductInsideWishlist(
+      id,
+      addProductInsideWishlist,
+    );
+  }
+
+  // delete product inside wishlist
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @Put('deleteproduct/:id')
+  async deleteProductInsideWishlist(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() addMoreWishlistDto: DeleteProduct,
+  ) {
+    return await this.wishlistService.deleteProductInsideWishlist(
+      id,
+      addMoreWishlistDto,
+    );
   }
 
   // update wishlist (PATCH)

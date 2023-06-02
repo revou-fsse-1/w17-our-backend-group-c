@@ -20,11 +20,8 @@ export class UpdateProduct {
 
   @IsNumber()
   @IsNotEmpty()
-  @ApiProperty({
-    type: Number,
-    format: 'double',
-  })
-  price: Decimal;
+  @ApiProperty({ default: 1 })
+  price: number;
 
   @IsNumber()
   @ApiProperty({ default: 1 })

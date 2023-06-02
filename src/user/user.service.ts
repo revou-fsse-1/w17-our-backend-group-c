@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { PatchUser } from './dto/patch-user.dto';
+import { instanceToPlain } from 'class-transformer';
+import { DeleteWishlistInsideUser } from './dto/delete-user-wishlist.dto';
 
 @Injectable()
 export class UserService {
@@ -25,11 +26,33 @@ export class UserService {
       where: {
         id: id,
       },
-      include: { wishlist: true },
+      include: { wishlist: { include: { products: true } } },
     });
-    return user;
+    return instanceToPlain(user, { excludePrefixes: ['quantity', 'password'] });
   }
 
+  // business logic delete wishlist inside user
+  async deleteWishlistInsideUser(
+    id: number,
+    deleteWishlistInsideUserDto: DeleteWishlistInsideUser,
+  ) {
+    try {
+      await this.prismaService.user.update({
+        where: { id: id },
+        data: {
+          wishlist: {
+            disconnect: { id: deleteWishlistInsideUserDto.wishlistsId },
+          },
+        },
+      });
+
+      return `Successfully remove wishlists with ID: ${deleteWishlistInsideUserDto.wishlistsId} from current user`;
+    } catch (error) {
+      if (error) {
+        throw new NotFoundException();
+      }
+    }
+  }
   // business logic delete user
   async deleteUser(id: number) {
     try {

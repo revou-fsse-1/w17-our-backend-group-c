@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class PatchWishlist {
   @IsString()
@@ -11,4 +11,9 @@ export class PatchWishlist {
   @IsOptional()
   @ApiProperty({ required: false, default: 1 })
   userId: number;
+
+  @IsNumber()
+  @IsOptional()
+  @ApiProperty({ default: 1 })
+  productId: number;
 }

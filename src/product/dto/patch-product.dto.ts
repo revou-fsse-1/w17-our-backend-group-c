@@ -15,13 +15,8 @@ export class PatchProduct {
 
   @IsNumber()
   @IsOptional()
-  @ApiProperty({
-    type: Number,
-    format: 'double',
-    required: false,
-    default: 0,
-  })
-  price: Decimal;
+  @ApiProperty({ default: 1 })
+  price: number;
 
   @IsNumber()
   @ApiProperty({ default: 1 })

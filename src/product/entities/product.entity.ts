@@ -13,7 +13,7 @@ export class ProductEntity implements Product {
   description: string;
 
   @ApiProperty({ default: 1000 })
-  price: Decimal;
+  price: number;
 
   @ApiProperty({ default: 1 })
   quantity: number;
