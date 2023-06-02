@@ -40,6 +40,11 @@ export class UserController {
   // delete wishlist inside user
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiOkResponse({
+    status: 200,
+    description:
+      'Successfully remove wishlists with ID: {wishlistsId} from current user',
+  })
   @Put('deletewishlists/:id')
   async deleteWishlistInsideUser(
     @Param('id', ParseIntPipe) id: number,
@@ -54,6 +59,10 @@ export class UserController {
   // delete user
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiOkResponse({
+    status: 200,
+    description: 'Data with id: {id} successfully deleted.',
+  })
   @Delete(':id')
   async deleteUser(@Param('id', ParseIntPipe) id: number) {
     return await this.userService.deleteUser(id);

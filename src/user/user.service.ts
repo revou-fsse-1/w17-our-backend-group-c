@@ -46,7 +46,7 @@ export class UserService {
         },
       });
 
-      return `Successfully remove wishlists with ID: ${deleteWishlistInsideUserDto.wishlistsId} from current user`;
+      return `Successfully remove wishlists with ID: ${deleteWishlistInsideUserDto.wishlistsId} from current user.`;
     } catch (error) {
       if (error) {
         throw new NotFoundException();
@@ -61,7 +61,7 @@ export class UserService {
           id: id,
         },
       });
-      return `Data with id: ${id} successfully deleted`;
+      return `Data with id: ${id} successfully deleted.`;
     } catch (error) {
       if (error.code === 'P2025') {
         throw new NotFoundException(error.meta.cause);
