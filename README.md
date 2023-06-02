@@ -4,6 +4,8 @@
 
 ![](/assets/simerce-app.png)
 
+Simerce is an acronym from Simple E-commerce App. This app was inspired from one of Mr.Dandi's friends that has a smalll groceries shop. He is wondering if his products he is selling can be put into an app like e-commerce but with much smaller scope.
+
 ## Team Member 🤝
 
 ---
@@ -19,9 +21,39 @@ Link: https://w17-our-backend-group-c-production.up.railway.app
 
 ## Documentation 📷
 
----
+### Database Diagram
 
-> under development sir.
+![Diagram Database](assets/diagram.png)
+
+### Endpoints
+
+| HTTP   |           Endpoint            |                    Description |
+| :----- | :---------------------------: | -----------------------------: |
+| POST   |      /auth/register/user      |                  Register User |
+| POST   |       /auth/login/user        |                     Login User |
+| POST   |     /auth/register/admin      |                 Register Admin |
+| POST   |       /auth/login/admin       |                    Login Admin |
+| GET    |       /auth/profileuser       |              Show User Profile |
+| GET    |            /users             |                 Show All Users |
+| GET    |          /users/{id}          |                Show User by Id |
+| DELETE |          /users/{id}          |             Delete Users by Id |
+| PUT    |  /users/deletewishlists/{id}  |          Delete Wishlist by Id |
+| GET    |         /products/all         |              Show All Products |
+| GET    |        /products/{id}         |            Show Products by Id |
+| PUT    |        /products/{id}         |          Update Products by Id |
+| PATCH  |        /products/{id}         |           Patch Products by Id |
+| DELETE |        /products/{id}         |          Delete Products by Id |
+| GET    |           /products           |                Search Products |
+| POST   |           /products           |                   Add Products |
+| GET    |          /wishlists           |                Search Wishlist |
+| POST   |          /wishlists           |                Create Wishlist |
+| GET    |        /wishlists/{id}        |            Show Wishlist by Id |
+| PATCH  |        /wishlists/{id}        |        To Update Wishlist Name |
+| DELETE |        /wishlists/{id}        |         Delete Wishlists by Id |
+| PUT    |  /wishlists/addproduct/{id}   |      Add Products to Wishlists |
+| PUT    | /wishlists/deleteproduct/{id} | Delete Prodcuts from Wishlists |
+| GET    |            /admins            |                    Show Admins |
+| DELETE |         /admins/{id}          |              Show Admins by Id |
 
 ## Technologies 💻
 
