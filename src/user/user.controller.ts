@@ -8,7 +8,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { AuthGuard, RoleGuard } from 'src/auth/guard/auth.guard';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
@@ -57,6 +57,7 @@ export class UserController {
   }
 
   // delete user
+  @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({
