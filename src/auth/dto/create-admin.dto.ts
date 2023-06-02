@@ -13,7 +13,7 @@ export class CreateAdmin {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  @ApiProperty({ default: 'example@gmail.com' })
+  @ApiProperty({ default: 'admin@gmail.com' })
   email: string;
 
   @IsString()

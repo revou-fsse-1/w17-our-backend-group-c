@@ -10,10 +10,16 @@ import { AuthService } from './auth.service';
 
 import { CreateUser } from './dto/create-user.dto';
 import { AuthGuard, RoleGuard } from './guard/auth.guard';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { CreateAdmin } from './dto/create-admin.dto';
 import { AdminEntity } from 'src/admin/entity/admin.entity';
+import { UserRegisterEntity } from './entities/user.register.entity';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -21,6 +27,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   // Register User
+  @ApiCreatedResponse({ type: UserRegisterEntity })
   @Post('register/user')
   async registerUser(@Body() createUserDto: CreateUser) {
     return this.authService.registerUser(createUserDto);
@@ -37,7 +44,7 @@ export class AuthController {
   }
 
   // Register Admin
-  @ApiOkResponse({ type: AdminEntity, isArray: true })
+  @ApiCreatedResponse({ type: AdminEntity })
   @Post('register/admin')
   async registerAdmin(@Body() createAdminDto: CreateAdmin) {
     return this.authService.registerAdmin(createAdminDto);
