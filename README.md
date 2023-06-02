@@ -25,45 +25,60 @@ Simerce is an acronym from Simple E-commerce App. This app was inspired from one
   - Railway Link: https://w17-our-backend-group-c-production.up.railway.app
 
 - Deployment (Arya)
+
   - GCP Link: https://simerce-app-v1.colorfulworldghibli.site/docs
   - Railway Link: https://w17-our-backend-group-c.up.railway.app/docs
 
+- Docker
+
+  - https://hub.docker.com/r/dandirizkyy/simerce-app-v1/tags
+
+  - https://us-east1-docker.pkg.dev/complete-stock-387402/docker/simerce-app-v1
+
 ## Documentation 📷
+
+---
 
 ### Database Diagram
 
 ![Diagram Database](assets/diagram.png)
 
-### Endpoints
+### Infrastructure Diagram
 
-|  HTTP  |           Endpoint            |          Description           |             Auth             |
-| :----: | :---------------------------: | :----------------------------: | :--------------------------: |
+![Infra Diagram](assets/simerce-app-v1.png)
+
+## Endpoints 🔗
+
+---
+
+|  HTTP  |           Endpoint            |          Description           |             Auth             | Status |
+| :----: | :---------------------------: | :----------------------------: | :--------------------------: | :----: |
 |  POST  |      /auth/register/user      |         Register User          |     Everyone can access      |
-|  POST  |       /auth/login/user        |           Login User           |  User and Admin can access   |
+|  POST  |       /auth/login/user        |           Login User           |  User and Admin can access   |   🔒   |
 |  POST  |     /auth/register/admin      |         Register Admin         | Endpoint only given to Admin |
-|  POST  |       /auth/login/admin       |          Login Admin           | Endpoint only given to Admin |
-|  GET   |       /auth/profileuser       |       Show User Profile        |  User and Admin can access   |
-|  GET   |      /auth/profileadmin       |       Show Admin Profile       |    Only Admin can access     |
-|  GET   |            /users             |         Show All Users         |  User and Admin can access   |
-|  GET   |          /users/{id}          |        Show User by Id         |  User and Admin can access   |
-| DELETE |          /users/{id}          |       Delete Users by Id       |    Only Admin can access     |
-|  PUT   |  /users/deletewishlists/{id}  |     Delete Wishlist by Id      |  User and Admin can access   |
+|  POST  |       /auth/login/admin       |          Login Admin           | Endpoint only given to Admin |   🔒   |
+|  GET   |       /auth/profileuser       |       Show User Profile        |  User and Admin can access   |   🔒   |
+|  GET   |      /auth/profileadmin       |       Show Admin Profile       |    Only Admin can access     |   🔒   |
+|  GET   |            /users             |         Show All Users         |  User and Admin can access   |   🔒   |
+|  GET   |          /users/{id}          |        Show User by Id         |  User and Admin can access   |   🔒   |
+| DELETE |          /users/{id}          |       Delete Users by Id       |    Only Admin can access     |   🔒   |
+|  PUT   |  /users/deletewishlists/{id}  |     Delete Wishlist by Id      |  User and Admin can access   |   🔒   |
 |  GET   |         /products/all         |       Show All Products        |     Everyone can access      |
-|  GET   |        /products/{id}         |      Show Products by Id       |  User and Admin can access   |
-|  PUT   |        /products/{id}         |     Update Products by Id      |    Only Admin can access     |
-| PATCH  |        /products/{id}         |      Patch Products by Id      |    Only Admin can access     |
-| DELETE |        /products/{id}         |     Delete Products by Id      |    Only Admin can access     |
-|  GET   |           /products           |        Search Products         |  User and Admin can access   |
-|  POST  |           /products           |          Add Products          |    Only Admin can access     |
-|  GET   |          /wishlists           |        Search Wishlist         |  User and Admin can access   |
-|  POST  |          /wishlists           |        Create Wishlist         |  User and Admin can access   |
-|  GET   |        /wishlists/{id}        |      Show Wishlist by Id       |  User and Admin can access   |
-| PATCH  |        /wishlists/{id}        |    To Update Wishlist Name     |  User and Admin can access   |
-| DELETE |        /wishlists/{id}        |     Delete Wishlists by Id     |  User and Admin can access   |
-|  PUT   |  /wishlists/addproduct/{id}   |   Add Products to Wishlists    |  User and Admin can access   |
-|  PUT   | /wishlists/deleteproduct/{id} | Delete Prodcuts from Wishlists |  User and Admin can access   |
-|  GET   |            /admins            |          Show Admins           |    Only Admin can access     |
-| DELETE |         /admins/{id}          |       Show Admins by Id        |    Only Admin can access     |
+|  GET   |        /products/{id}         |      Show Products by Id       |  User and Admin can access   |   🔒   |
+|  PUT   |        /products/{id}         |     Update Products by Id      |    Only Admin can access     |   🔒   |
+| PATCH  |        /products/{id}         |      Patch Products by Id      |    Only Admin can access     |   🔒   |
+| DELETE |        /products/{id}         |     Delete Products by Id      |    Only Admin can access     |   🔒   |
+|  GET   |           /products           |        Search Products         |  User and Admin can access   |   🔒   |
+|  POST  |           /products           |          Add Products          |    Only Admin can access     |   🔒   |
+|  GET   |          /wishlists           |        Search Wishlist         |  User and Admin can access   |   🔒   |
+|  POST  |          /wishlists           |        Create Wishlist         |  User and Admin can access   |   🔒   |
+|  GET   |        /wishlists/{id}        |      Show Wishlist by Id       |  User and Admin can access   |   🔒   |
+| PATCH  |        /wishlists/{id}        |    To Update Wishlist Name     |  User and Admin can access   |   🔒   |
+| DELETE |        /wishlists/{id}        |     Delete Wishlists by Id     |  User and Admin can access   |   🔒   |
+|  PUT   |  /wishlists/addproduct/{id}   |   Add Products to Wishlists    |  User and Admin can access   |   🔒   |
+|  PUT   | /wishlists/deleteproduct/{id} | Delete Prodcuts from Wishlists |  User and Admin can access   |   🔒   |
+|  GET   |            /admins            |          Show Admins           |    Only Admin can access     |   🔒   |
+| DELETE |         /admins/{id}          |       Show Admins by Id        |    Only Admin can access     |   🔒   |
 
 ## Technologies 💻
 
