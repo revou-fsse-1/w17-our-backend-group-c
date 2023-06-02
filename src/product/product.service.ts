@@ -42,31 +42,31 @@ export class ProductService {
 
   // business logic create product
   async createProduct(createProductDto: CreateProduct) {
-    const product = await this.prismaService.product.create({
-      data: {
-        ...createProductDto,
-        price: createProductDto.price,
-      },
+    //   const product = await this.prismaService.product.create({
+    //     data: {
+    //       ...createProductDto,
+    //       price: createProductDto.price,
+    //     },
+    //   });
+
+    //   return product;
+
+    const unsplash = unsplashCreateApi({
+      accessKey: process.env.UNSPLASH_ACCESS_KEY,
     });
 
-    return product;
+    const result = await unsplash.photos.getRandom({
+      query: createProductDto.title,
+      count: 1,
+    });
+    const randomImageUrl = result.response[0].urls.regular;
 
-    // const unsplash = unsplashCreateApi({
-    //   accessKey: process.env.UNSPLASH_ACCESS_KEY,
-    // });
-
-    // const result = await unsplash.photos.getRandom({
-    //   query: createProductDto.title,
-    //   count: 1,
-    // });
-    // const randomImageUrl = result.response[0].urls.regular;
-
-    // return await this.prismaService.product.create({
-    //   data: {
-    //     ...createProductDto,
-    //     image: randomImageUrl,
-    //   },
-    // });
+    return await this.prismaService.product.create({
+      data: {
+        ...createProductDto,
+        image: randomImageUrl,
+      },
+    });
   }
 
   // business logic update product

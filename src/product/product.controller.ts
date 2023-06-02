@@ -80,7 +80,7 @@ export class ProductController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: ProductEntity })
+  @ApiOkResponse({ type: ProductEntity })
   @Put(':id')
   async updateProduct(
     @Param('id', ParseIntPipe) id: number,
@@ -93,7 +93,7 @@ export class ProductController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: ProductEntity })
+  @ApiOkResponse({ type: ProductEntity })
   @Patch(':id')
   async patchProduct(
     @Param('id', ParseIntPipe) id: number,

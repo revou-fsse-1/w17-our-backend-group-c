@@ -68,7 +68,7 @@ export class WishlistController {
   // add more product inside wishlist
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({
+  @ApiOkResponse({
     status: 200,
     description:
       'Successfully adding product with ID: {productId} to current wishlists.',
@@ -87,7 +87,7 @@ export class WishlistController {
   // delete product inside wishlist
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({
+  @ApiOkResponse({
     status: 200,
     description:
       'Successfully remove product with ID: {productId} from current wishlists.',
@@ -106,7 +106,7 @@ export class WishlistController {
   // update wishlist (PATCH)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: WishlistEntity })
+  @ApiOkResponse({ type: WishlistEntity })
   @Patch(':id')
   async updateWishlistPatch(
     @Param('id', ParseIntPipe) id: number,
