@@ -35,6 +35,12 @@ Simerce is an acronym from Simple E-commerce App. This app was inspired from one
 
   - https://us-east1-docker.pkg.dev/complete-stock-387402/docker/simerce-app-v1
 
+## Website Status 🕒
+
+---
+
+BetterUptime : https://simerce-app.dandirizky.site/
+
 ## Documentation 📷
 
 ---
