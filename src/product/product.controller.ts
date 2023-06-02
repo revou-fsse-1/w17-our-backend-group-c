@@ -23,8 +23,8 @@ import { CreateProduct } from './dto/create-product.dto';
 import { UpdateProduct } from './dto/update-product.dto';
 import { PatchProduct } from './dto/patch-product.dto';
 import { AuthGuard, RoleGuard } from 'src/auth/guard/auth.guard';
-import { ProductEntity } from './entities/product.entity';
-import { ProductRelationEntity } from './entities/product.relation.entity';
+// import { ProductEntity } from './entities/product.entity';
+// import { ProductRelationEntity } from './entities/product.relation.entity';
 
 @Controller('products')
 @ApiTags('products')
@@ -34,7 +34,7 @@ export class ProductController {
   // get all products
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: ProductEntity, isArray: true })
+  // @ApiOkResponse({ type: ProductEntity, isArray: true })
   @Get('all')
   async getAllProducts() {
     return await this.productService.getAllProducts();
@@ -43,7 +43,7 @@ export class ProductController {
   // get product by id
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: ProductRelationEntity })
+  // @ApiOkResponse({ type: ProductRelationEntity })
   @Get(':id')
   async getProductById(@Param('id', ParseIntPipe) id: number) {
     return await this.productService.getProductById(id);
@@ -52,7 +52,7 @@ export class ProductController {
   // search product using query
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: ProductEntity, isArray: true })
+  // @ApiOkResponse({ type: ProductEntity, isArray: true })
   @Get()
   @ApiQuery({
     name: 'q',
@@ -68,7 +68,7 @@ export class ProductController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: ProductEntity })
+  // @ApiCreatedResponse({ type: ProductEntity })
   @Post()
   async createProduct(@Body() createProductDto: CreateProduct) {
     return await this.productService.createProduct(createProductDto);
@@ -78,7 +78,7 @@ export class ProductController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: ProductEntity })
+  // @ApiCreatedResponse({ type: ProductEntity })
   @Put(':id')
   async updateProduct(
     @Param('id', ParseIntPipe) id: number,
@@ -91,7 +91,7 @@ export class ProductController {
   @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: ProductEntity })
+  // @ApiCreatedResponse({ type: ProductEntity })
   @Patch(':id')
   async patchProduct(
     @Param('id', ParseIntPipe) id: number,

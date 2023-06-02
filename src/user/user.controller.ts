@@ -5,16 +5,15 @@ import {
   Get,
   Param,
   ParseIntPipe,
-  Patch,
+  Put,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard, RoleGuard } from 'src/auth/guard/auth.guard';
-import { PatchUser } from './dto/patch-user.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
-import { WishlistRelationEntity } from 'src/wishlist/entities/wishlist.relation.entity';
 import { UserRelationEntity } from './entities/user.relation.entity';
+import { DeleteWishlistInsideUser } from './dto/delete-user-wishlist.dto';
 @Controller('users')
 @ApiTags('users')
 export class UserController {
@@ -38,8 +37,21 @@ export class UserController {
     return await this.userService.getUserById(id);
   }
 
+  // delete wishlist inside user
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @Put('deletewishlists/:id')
+  async deleteWishlistInsideUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() deleteWishlistInsideUserDto: DeleteWishlistInsideUser,
+  ) {
+    return await this.userService.deleteWishlistInsideUser(
+      id,
+      deleteWishlistInsideUserDto,
+    );
+  }
+
   // delete user
-  @UseGuards(RoleGuard)
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @Delete(':id')

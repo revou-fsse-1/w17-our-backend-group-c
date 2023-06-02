@@ -31,7 +31,7 @@ export class ProductService {
       where: {
         id: id,
       },
-      include: { wishlist: true },
+      // include: { wishlist: true },
     });
 
     if (!product || product === null) {
@@ -42,55 +42,36 @@ export class ProductService {
 
   // business logic create product
   async createProduct(createProductDto: CreateProduct) {
-    // const { price, ...rest } = createProductDto;
-
-    // let parsedPrice: number;
-
-    // if (typeof price === 'number') {
-    //   // If price is already a number, assign it directly
-    //   parsedPrice = price;
-    // } else {
-    //   // If price is a string, parse it into a number
-    //   parsedPrice = parseFloat(price);
-    // }
-
-    // const product = await this.prismaService.product.create({
-    //   data: {
-    //     ...rest,
-    //     price: parsedPrice,
-    //   },
-    // });
-
-    // const responseProduct = {
-    //   ...product,
-    //   price: parsedPrice, // Convert the parsedPrice to a number in the response
-    // };
-
-    // return responseProduct;
-
-    // const product = await this.prismaService.product.create({
-    //   data: {
-    //     ...createProductDto,
-    //   },
-    // });
-    // return product;
-
-    const unsplash = unsplashCreateApi({
-      accessKey: process.env.UNSPLASH_ACCESS_KEY,
-    });
-
-    const result = await unsplash.photos.getRandom({
-      query: createProductDto.title,
-      count: 1,
-    });
-    const randomImageUrl = result.response[0].urls.regular;
-
-    return await this.prismaService.product.create({
+    const product = await this.prismaService.product.create({
       data: {
         ...createProductDto,
-        image: randomImageUrl,
+        price: createProductDto.price,
       },
     });
+
+    return product;
+
+    // return {
+    //   ...product,
+    //   price: product.price.toNumber(), // Convert the parsedPrice to a number in the response
+    // };
+
+    // const unsplash = unsplashCreateApi({
+    //   accessKey: process.env.UNSPLASH_ACCESS_KEY,
+    // });
+
+    // const result = await unsplash.photos.getRandom({
+    //   query: createProductDto.title,
+    //   count: 1,
+    // });
+    // const randomImageUrl = result.response[0].urls.regular;
+
+    // return await this.prismaService.product.create({
+    //   data: {
+    //     ...createProductDto,
+    //     image: randomImageUrl,
+    //   },
+    // });
   }
 
   // business logic update product
@@ -121,7 +102,7 @@ export class ProductService {
         quantity,
         price,
         image,
-        wishlistId,
+        // wishlistId,
       } = patchProductDto;
       return await this.prismaService.product.update({
         where: {
@@ -135,7 +116,7 @@ export class ProductService {
           quantity: quantity ? quantity : undefined,
           price: price ? price : undefined,
           image: image ? image : undefined,
-          wishlistId: wishlistId ? wishlistId : undefined,
+          // wishlistId: wishlistId ? wishlistId : undefined,
         },
       });
     } catch (error) {
