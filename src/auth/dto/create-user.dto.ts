@@ -12,7 +12,7 @@ export class CreateUser {
   @IsEmail()
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ default: 'example@gmail.com' })
+  @ApiProperty({ default: 'user@gmail.com' })
   email: string;
 
   @IsString()

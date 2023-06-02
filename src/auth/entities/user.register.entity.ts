@@ -1,17 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Admin } from '@prisma/client';
+import { User } from '@prisma/client';
 import { Role } from 'src/auth/enums/user.enums';
 
-export class AdminEntity implements Admin {
+export class UserRegisterEntity implements User {
   @ApiProperty({ default: 1 })
   id: number;
 
-  @ApiProperty({ default: 'admin@gmail.com' })
+  @ApiProperty({ default: 'user@gmail.com' })
   email: string;
 
   password: string;
 
-  @ApiProperty({ default: 'admin' })
+  @ApiProperty({ default: 'user' })
   roles: Role;
 
   @ApiProperty()
