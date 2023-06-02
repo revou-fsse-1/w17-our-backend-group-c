@@ -68,7 +68,11 @@ export class WishlistController {
   // add more product inside wishlist
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: WishlistEntity })
+  @ApiCreatedResponse({
+    status: 200,
+    description:
+      'Successfully adding product with ID: {productId} to current wishlists.',
+  })
   @Put('addproduct/:id')
   async addProductInsideWishlist(
     @Param('id', ParseIntPipe) id: number,
@@ -83,6 +87,11 @@ export class WishlistController {
   // delete product inside wishlist
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiCreatedResponse({
+    status: 200,
+    description:
+      'Successfully remove product with ID: {productId} from current wishlists.',
+  })
   @Put('deleteproduct/:id')
   async deleteProductInsideWishlist(
     @Param('id', ParseIntPipe) id: number,
@@ -109,6 +118,10 @@ export class WishlistController {
   // delete wishlist
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
+  @ApiOkResponse({
+    status: 200,
+    description: 'Wishlist with id: {id} successfully deleted.',
+  })
   @Delete(':id')
   async deleteWishlist(@Param('id', ParseIntPipe) id: number) {
     return await this.wishlistService.deleteWishlist(id);

@@ -69,7 +69,7 @@ export class WishlistService {
         },
       });
 
-      return `Successfully adding product with ID: ${addProductInsideWishlist.productId} to current wishlists`;
+      return `Successfully adding product with ID: ${addProductInsideWishlist.productId} to current wishlists.`;
     } catch (error) {
       if (error) {
         throw new NotFoundException();
@@ -129,7 +129,7 @@ export class WishlistService {
           id: id,
         },
       });
-      return `Data with id: ${id} successfully deleted`;
+      return `Wishlist with id: ${id} successfully deleted`;
     } catch (error) {
       if (error.code === 'P2025') {
         throw new NotFoundException(error.meta.cause);
