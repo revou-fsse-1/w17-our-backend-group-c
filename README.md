@@ -17,11 +17,14 @@ Simerce is an acronym from Simple E-commerce App. This app was inspired from one
 
 ---
 
-Link: https://w17-our-backend-group-c-production.up.railway.app
+- Deployment (Dandi)
+
+  - GCP Link: https://simerce-app-v1.dandirizky.site/
+  - Railway Link: https://w17-our-backend-group-c-production.up.railway.app
 
 - Deployment (Arya)
-  - https://simerce-app-v1.colorfulworldghibli.site/docs
-  - https://w17-our-backend-group-c.up.railway.app/docs
+  - GCP Link: https://simerce-app-v1.colorfulworldghibli.site/docs
+  - Railway Link: https://w17-our-backend-group-c.up.railway.app/docs
 
 ## Documentation 📷
 
