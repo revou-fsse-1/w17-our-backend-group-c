@@ -34,10 +34,12 @@ services:
       - .env
     restart: always
   app:
-    image: dandirizkyy/simerce-app
+    image: us-east1-docker.pkg.dev/complete-stock-387402/docker/simerce-app-v1
     container_name: simerce-app
     build: .
     ports:
+      - 80:4000
+      - 443:4000
       - 4000:4000
     env_file:
       - .env
