@@ -55,6 +55,12 @@ In our database diagram, we have established a one-to-many relationship between 
 
 ![Infra Diagram](assets/simerce-app-v1.png)
 
+### API Documentation With Swagger
+
+- https://simerce-app-v1.dandirizky.site/docs
+
+- https://simerce-app-v1.colorfulworldghibli.site/docs
+
 ## Endpoints 🔗
 
 ---
