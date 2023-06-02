@@ -43,6 +43,8 @@ Simerce is an acronym from Simple E-commerce App. This app was inspired from one
 
 ![Diagram Database](assets/diagram.png)
 
+In our database diagram, we have established a one-to-many relationship between the User and Wishlist models, indicating that a user can have multiple wishlists. Additionally, we have implemented a many-to-many relationship between the Wishlist and Product models, allowing for the storage of multiple products within a wishlist and the ability to associate products with multiple wishlists. This design provides users with the flexibility to create and manage multiple wishlists while enabling products to be saved in and associated with various wishlists seamlessly.
+
 ### Infrastructure Diagram
 
 ![Infra Diagram](assets/simerce-app-v1.png)
@@ -80,6 +82,77 @@ Simerce is an acronym from Simple E-commerce App. This app was inspired from one
 |  GET   |            /admins            |          Show Admins           |    Only Admin can access     |   🔒   |
 | DELETE |         /admins/{id}          |       Show Admins by Id        |    Only Admin can access     |   🔒   |
 
+## Installation 🔨
+
+---
+
+In order to run this project locally, you need to clone this repository first using git clone
+
+```bash
+$ https://github.com/revou-fsse-1/w17-our-backend-group-c.git
+```
+
+then run `pnpm install` in your terminal to download all dependencies
+
+```bash
+$ pnpm install
+```
+
+create `docker-compose.yaml` on root folder (where the package.json installed) and fill with these commands to install postgresql database locally on your computer
+
+```
+version: "3"
+services:
+  postgres:
+    image: postgres:14
+    ports:
+    - 5432:5432
+    environment:
+    - POSTGRES_DB=revou
+    - POSTGRES_USER=revou
+    - POSTGRES_PASSWORD=password
+    volumes:
+    - ./postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dandi@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    ports:
+      - 15432:80
+```
+
+don't forget to create `.env` files on root folder same like before with these command:
+
+```
+DATABASE_URL="postgresql://revou:password@database:5432/revou?schema=public"
+```
+
+and run docker with these command:
+
+```
+docker-compose up -d
+```
+
+after that you can start the server using these following command :
+
+```bash
+# development
+$ pnpm run start
+
+# watch mode
+$ pnpm run start:dev
+
+# production mode
+$ pnpm run start:prod
+```
+
+if you want to stop docker, you can use these command
+
+```
+docker-compose stop
+```
+
 ## Technologies 💻
 
 ---
@@ -92,6 +165,14 @@ Simerce is an acronym from Simple E-commerce App. This app was inspired from one
 - Docker
 - Railway
 - GCP
+
+## Social Link 👋
+
+---
+
+- https://www.linkedin.com/in/dandirizkyy/
+
+- https://www.linkedin.com/in/aryaimmanuel/
 
 ## Support 🙌
 
