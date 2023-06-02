@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Decimal } from '@prisma/client/runtime';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateProduct {
@@ -13,11 +12,6 @@ export class UpdateProduct {
   @ApiProperty({ default: 'Example Description' })
   description: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty({ default: 'Example Category' })
-  categories: string;
-
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty({ default: 1 })
@@ -28,8 +22,12 @@ export class UpdateProduct {
   @IsNotEmpty()
   quantity: number;
 
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({ default: 'Example Category' })
+  categories: string;
+
   @IsNumber()
   @IsOptional()
-  @ApiProperty({ required: false })
   wishlistId?: number | null;
 }

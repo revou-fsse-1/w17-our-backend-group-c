@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Decimal } from '@prisma/client/runtime';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class PatchProduct {
@@ -35,6 +34,5 @@ export class PatchProduct {
 
   @IsNumber()
   @IsOptional()
-  @ApiProperty({ required: false, default: 0 })
   wishlistId?: number | null;
 }
