@@ -31,7 +31,7 @@ export class ProductService {
       where: {
         id: id,
       },
-      // include: { wishlist: true },
+      include: { wishlists: true },
     });
 
     if (!product || product === null) {
@@ -50,11 +50,6 @@ export class ProductService {
     });
 
     return product;
-
-    // return {
-    //   ...product,
-    //   price: product.price.toNumber(), // Convert the parsedPrice to a number in the response
-    // };
 
     // const unsplash = unsplashCreateApi({
     //   accessKey: process.env.UNSPLASH_ACCESS_KEY,

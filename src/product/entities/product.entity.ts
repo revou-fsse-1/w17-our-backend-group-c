@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Product } from '@prisma/client';
-import { Decimal } from '@prisma/client/runtime';
 
 export class ProductEntity implements Product {
   @ApiProperty({ default: 1 })
@@ -21,10 +20,8 @@ export class ProductEntity implements Product {
   @ApiProperty({ default: 'Example Categories' })
   categories: string;
 
-  @ApiProperty({ default: 'image.png' })
   image: string;
 
-  @ApiProperty({ required: false, default: 1 })
   wishlistId: number;
 
   @ApiProperty()
