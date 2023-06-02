@@ -27,33 +27,34 @@ Link: https://w17-our-backend-group-c-production.up.railway.app
 
 ### Endpoints
 
-| HTTP   |           Endpoint            |                    Description |
-| :----- | :---------------------------: | -----------------------------: |
-| POST   |      /auth/register/user      |                  Register User |
-| POST   |       /auth/login/user        |                     Login User |
-| POST   |     /auth/register/admin      |                 Register Admin |
-| POST   |       /auth/login/admin       |                    Login Admin |
-| GET    |       /auth/profileuser       |              Show User Profile |
-| GET    |            /users             |                 Show All Users |
-| GET    |          /users/{id}          |                Show User by Id |
-| DELETE |          /users/{id}          |             Delete Users by Id |
-| PUT    |  /users/deletewishlists/{id}  |          Delete Wishlist by Id |
-| GET    |         /products/all         |              Show All Products |
-| GET    |        /products/{id}         |            Show Products by Id |
-| PUT    |        /products/{id}         |          Update Products by Id |
-| PATCH  |        /products/{id}         |           Patch Products by Id |
-| DELETE |        /products/{id}         |          Delete Products by Id |
-| GET    |           /products           |                Search Products |
-| POST   |           /products           |                   Add Products |
-| GET    |          /wishlists           |                Search Wishlist |
-| POST   |          /wishlists           |                Create Wishlist |
-| GET    |        /wishlists/{id}        |            Show Wishlist by Id |
-| PATCH  |        /wishlists/{id}        |        To Update Wishlist Name |
-| DELETE |        /wishlists/{id}        |         Delete Wishlists by Id |
-| PUT    |  /wishlists/addproduct/{id}   |      Add Products to Wishlists |
-| PUT    | /wishlists/deleteproduct/{id} | Delete Prodcuts from Wishlists |
-| GET    |            /admins            |                    Show Admins |
-| DELETE |         /admins/{id}          |              Show Admins by Id |
+| HTTP   |           Endpoint            |                    Description |                         Auth |
+| :----- | :---------------------------: | -----------------------------: | ---------------------------: |
+| POST   |      /auth/register/user      |                  Register User |          Everyone can access |
+| POST   |       /auth/login/user        |                     Login User |    User and Admin can access |
+| POST   |     /auth/register/admin      |                 Register Admin | Endpoint only given to Admin |
+| POST   |       /auth/login/admin       |                    Login Admin | Endpoint only given to Admin |
+| GET    |       /auth/profileuser       |              Show User Profile |    User and Admin can access |
+| GET    |      /auth/profileadmin       |             Show Admin Profile |        Only Admin can access |
+| GET    |            /users             |                 Show All Users |    User and Admin can access |
+| GET    |          /users/{id}          |                Show User by Id |    User and Admin can access |
+| DELETE |          /users/{id}          |             Delete Users by Id |        Only Admin can access |
+| PUT    |  /users/deletewishlists/{id}  |          Delete Wishlist by Id |    User and Admin can access |
+| GET    |         /products/all         |              Show All Products |          Everyone can access |
+| GET    |        /products/{id}         |            Show Products by Id |    User and Admin can access |
+| PUT    |        /products/{id}         |          Update Products by Id |        Only Admin can access |
+| PATCH  |        /products/{id}         |           Patch Products by Id |        Only Admin can access |
+| DELETE |        /products/{id}         |          Delete Products by Id |        Only Admin can access |
+| GET    |           /products           |                Search Products |    User and Admin can access |
+| POST   |           /products           |                   Add Products |        Only Admin can access |
+| GET    |          /wishlists           |                Search Wishlist |    User and Admin can access |
+| POST   |          /wishlists           |                Create Wishlist |    User and Admin can access |
+| GET    |        /wishlists/{id}        |            Show Wishlist by Id |    User and Admin can access |
+| PATCH  |        /wishlists/{id}        |        To Update Wishlist Name |    User and Admin can access |
+| DELETE |        /wishlists/{id}        |         Delete Wishlists by Id |    User and Admin can access |
+| PUT    |  /wishlists/addproduct/{id}   |      Add Products to Wishlists |    User and Admin can access |
+| PUT    | /wishlists/deleteproduct/{id} | Delete Prodcuts from Wishlists |    User and Admin can access |
+| GET    |            /admins            |                    Show Admins |        Only Admin can access |
+| DELETE |         /admins/{id}          |              Show Admins by Id |        Only Admin can access |
 
 ## Technologies 💻
 
